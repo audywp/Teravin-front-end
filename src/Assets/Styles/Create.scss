@@ -1,0 +1,41 @@
+ .backHome{
+   position: absolute;
+   top: 12%;
+   right: 250px;
+ }
+
+.create-container{
+
+  .create-input{
+    display: flex;
+    padding: 0 200px;
+    label{
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      line-height: 40px;
+    }
+
+    input{
+      flex: 2;
+    }
+    .input-field{
+      flex: 2;
+    }
+    
+  }
+  .button-submit{
+    display: flex;
+    justify-content: flex-end;
+
+    button{
+      margin-right: 200px;
+      margin-top: 20px;
+    }
+
+    button.disabledBtn{
+      cursor: not-allowed;
+    }
+  }
+}

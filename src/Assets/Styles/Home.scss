@@ -12,7 +12,7 @@
 
   .header{
     margin-bottom: 40px;
-    padding: 0 20px;
+    padding: 0 80px;
     display: flex;
     align-items: center;
     h1{
@@ -58,6 +58,12 @@
     }
   }
 
+  .create{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -40px;
+  }
+
   .table-user{
     padding: 0 80px;
     height: 42vh;
@@ -83,9 +89,23 @@
         }
       }
     }
+    .nodata{
+      background-image: url('../Images/nodata.png');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      text-shadow: 0px 0px 0.5px black;
+      height: 40vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
+  
   .pagination{
     display: flex;
     justify-content: center;
+    margin-top: -18px;
   }
 }

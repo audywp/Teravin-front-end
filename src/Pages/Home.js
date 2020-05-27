@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
+
 import {
   Container,
   Table,
@@ -22,6 +24,7 @@ import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai'
 // components
 import Loading from '../Components/LoadingScreen'
 import config from '../utils/config'
+import history from '../utils/history'
 
 // styles
 import '../Assets/Styles/Home.scss'
@@ -45,10 +48,16 @@ export default class Home extends Component {
     this.setPage = async (e) => {
       try {
         const dataUser = await axios.get(config.APP_BACKEND.concat(`user?page=${e.target.textContent}`))
+        const page = []
+        const pageTotal = dataUser.data.pageInfo.totalPage
+        for (let index = 0; index < pageTotal; index++) {
+          page.push(<PaginationItem key={index}> <PaginationLink onClick={this.setPage} href='#'>{index + 1}</PaginationLink> </PaginationItem>)
+        }
         this.setState({
           users: dataUser.data.data,
           pageInfo: dataUser.data.pageInfo,
           loading: false,
+          page
         })
         this.setState({
           loading: true,
@@ -57,14 +66,19 @@ export default class Home extends Component {
         console.log(error)
       }
     }
-    this.nextLink = async (page) => {
+    this.nextLink = async (currentPage) => {
       try {
-        const dataUser = await axios.get(page)
+        const dataUser = await axios.get(currentPage)
+        const page = []
+        const pageTotal = dataUser.data.pageInfo.totalPage
+        for (let index = 0; index < pageTotal; index++) {
+          page.push(<PaginationItem key={index}> <PaginationLink onClick={this.setPage} href='#'>{index + 1}</PaginationLink> </PaginationItem>)
+        }
         this.setState({
           users: dataUser.data.data,
           pageInfo: dataUser.data.pageInfo,
           loading: false,
-
+          page
         })
         this.setState({
           loading: true,
@@ -73,13 +87,19 @@ export default class Home extends Component {
         console.log(error)
       }
     }
-    this.prevLink = async (page) => {
+    this.prevLink = async (currentPage) => {
       try {
-        const dataUser = await axios.get(page)
+        const dataUser = await axios.get(currentPage)
+        const page = []
+        const pageTotal = dataUser.data.pageInfo.totalPage
+        for (let index = 0; index < pageTotal; index++) {
+          page.push(<PaginationItem key={index}> <PaginationLink onClick={this.setPage} href='#'>{index + 1}</PaginationLink> </PaginationItem>)
+        }
         this.setState({
           users: dataUser.data.data,
           pageInfo: dataUser.data.pageInfo,
           loading: false,
+          page
         })
         this.setState({
           loading: true,
@@ -217,73 +237,86 @@ export default class Home extends Component {
       sortValueEmail,
     } = this.state
 
-    console.log(search)
+    console.log(pageInfo)
     return (
       <Container>
-
         <div className="header">
           <h1>List User</h1>
           <div className="actions">
-            <Form>
-              <FormGroup>
-                <Label for="search">Search by</Label>
-                <Input onChange={this.searchKey} type="select" id="search">
-                  <option value="name">Name</option>
-                  <option value="email">Email</option>
-                </Input>
-                <Input onChange={this.searchValue} placeholder="search" />
-                <Button onClick={() => this.Search(searchKey, search)} outline color="primary"> Search </Button>
-              </FormGroup>
-            </Form>
+            {users === null && pageInfo === null ? null :
+              <Form>
+                <FormGroup>
+                  <Label for="search">Search by</Label>
+                  <Input onChange={this.searchKey} type="select" id="search">
+                    <option value="name">Name</option>
+                    <option value="email">Email</option>
+                  </Input>
+                  <Input onChange={this.searchValue} placeholder="search" />
+                  <Button onClick={() => this.Search(searchKey, search)} outline color="primary"> Search </Button>
+                </FormGroup>
+              </Form>}
           </div>
         </div>
         {loading && users === null && pageInfo === null ? <Loading />
           :
           <div className="table-user">
-            <Table striped bordered hover responsive>
-              <thead>
-                <tr>
-                  <th>No.</th>
-                  <th style={{ cursor: "pointer" }} onClick={this.sortValueName}>Name {sortValueName ? sortName : <AiFillCaretUp />} </th>
-                  <th style={{ cursor: "pointer" }} onClick={this.sortValueEmail}>Email {sortValueEmail ? sortEmail : <AiFillCaretUp />} </th>
-                  <th>Options</th>
-                </tr>
-              </thead>
-              <tbody>
-                {users !== null && pageInfo !== null ? users.map((user, i) => {
-                  return (
-                    <tr key={i}>
-                      <th> {((pageInfo.page - 1) * pageInfo.limit) + (i + 1)} </th>
-                      <td> {user.name} </td>
-                      <td> {user.email} </td>
-                      <td>
-                        <div className="options">
-                          <button type="button">
-                            <RiPencilLine size={25} color="#007bff" />
-                            <Badge color="success">Edit</Badge>
-                          </button>
-                          <button type="button">
-                            <FaRegTrashAlt size={18} color="#007bff" />
-                            <Badge color="danger">Delete</Badge>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  )
-                }) : null}
-              </tbody>
-            </Table>
+            {users !== null ? <>
+              <Table striped bordered hover responsive>
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th style={{ cursor: "pointer" }} onClick={this.sortValueName}>Name {sortValueName ? sortName : <AiFillCaretUp />} </th>
+                    <th style={{ cursor: "pointer" }} onClick={this.sortValueEmail}>Email {sortValueEmail ? sortEmail : <AiFillCaretUp />} </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {users !== null && pageInfo !== null ? users.map((user, i) => {
+                    return (
+                      <tr key={i}>
+                        <th> {((pageInfo.page - 1) * pageInfo.limit) + (i + 1)} </th>
+                        <td> {user.name} </td>
+                        <td> {user.email} </td>
+                      </tr>
+                    )
+                  }) : null}
+                </tbody>
+              </Table>
+              <p> Total Data : {pageInfo.totalData} </p>
+              <div className="create">
+                <Link to='/create'>
+                  <Button style={{
+                    display: 'block',
+                  }} color="primary"> Create </Button>
+                </Link>
+              </div>
+              <Pagination className="pagination" aria-label="Page navigation example">
+                <PaginationItem>
+                  <PaginationLink previous onClick={() => this.nextLink(pageInfo.prevLink)} href="#" />
+                </PaginationItem>
+                {page}
+                <PaginationItem>
+                  <PaginationLink next onClick={() => this.nextLink(pageInfo.nextLink)} href="#" />
+                </PaginationItem>
+              </Pagination>
+            </> :
+              <div className="nodata">
+                <p>There's currently no data exist </p>
+                <p>please create by clicking the create button Below</p>
+                <div className="createNoData">
+                  <Link to='/create'>
+                    <Button style={{
+                      display: 'block',
+                    }} color="primary"> Create </Button>
+                  </Link>
+                </div>
+              </div>
+            }
+
           </div>
         }
-        <Pagination className="pagination" aria-label="Page navigation example">
-          <PaginationItem>
-            <PaginationLink previous onClick={() => this.nextLink(pageInfo.prevLink)} href="#" />
-          </PaginationItem>
-          {page}
-          <PaginationItem>
-            <PaginationLink next onClick={() => this.nextLink(pageInfo.nextLink)} href="#" />
-          </PaginationItem>
-        </Pagination>
+        <div className="bottom">
+
+        </div>
       </Container>
     )
   }
