@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/Teravin-front-end/static/css/main.25f3e2e6.chunk.css",
-    "main.js": "/Teravin-front-end/static/js/main.967f55c9.chunk.js",
-    "main.js.map": "/Teravin-front-end/static/js/main.967f55c9.chunk.js.map",
-    "runtime-main.js": "/Teravin-front-end/static/js/runtime-main.854e6814.js",
-    "runtime-main.js.map": "/Teravin-front-end/static/js/runtime-main.854e6814.js.map",
-    "static/css/2.af3c1da9.chunk.css": "/Teravin-front-end/static/css/2.af3c1da9.chunk.css",
-    "static/js/2.eaec6d9c.chunk.js": "/Teravin-front-end/static/js/2.eaec6d9c.chunk.js",
-    "static/js/2.eaec6d9c.chunk.js.map": "/Teravin-front-end/static/js/2.eaec6d9c.chunk.js.map",
-    "index.html": "/Teravin-front-end/index.html",
-    "precache-manifest.cb6a536354825554621a10e4fa94b98b.js": "/Teravin-front-end/precache-manifest.cb6a536354825554621a10e4fa94b98b.js",
-    "service-worker.js": "/Teravin-front-end/service-worker.js",
-    "static/css/2.af3c1da9.chunk.css.map": "/Teravin-front-end/static/css/2.af3c1da9.chunk.css.map",
-    "static/css/main.25f3e2e6.chunk.css.map": "/Teravin-front-end/static/css/main.25f3e2e6.chunk.css.map",
-    "static/js/2.eaec6d9c.chunk.js.LICENSE.txt": "/Teravin-front-end/static/js/2.eaec6d9c.chunk.js.LICENSE.txt",
-    "static/media/Home.scss": "/Teravin-front-end/static/media/nodata.adc273cf.png"
+    "main.css": "./static/css/main.509c31ac.chunk.css",
+    "main.js": "./static/js/main.04bb5d1c.chunk.js",
+    "main.js.map": "./static/js/main.04bb5d1c.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.bb9f15b1.js",
+    "runtime-main.js.map": "./static/js/runtime-main.bb9f15b1.js.map",
+    "static/css/2.af3c1da9.chunk.css": "./static/css/2.af3c1da9.chunk.css",
+    "static/js/2.eaec6d9c.chunk.js": "./static/js/2.eaec6d9c.chunk.js",
+    "static/js/2.eaec6d9c.chunk.js.map": "./static/js/2.eaec6d9c.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.b357c64c55f738de1cc2aca8400a529c.js": "./precache-manifest.b357c64c55f738de1cc2aca8400a529c.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/2.af3c1da9.chunk.css.map": "./static/css/2.af3c1da9.chunk.css.map",
+    "static/css/main.509c31ac.chunk.css.map": "./static/css/main.509c31ac.chunk.css.map",
+    "static/js/2.eaec6d9c.chunk.js.LICENSE.txt": "./static/js/2.eaec6d9c.chunk.js.LICENSE.txt",
+    "static/media/Home.scss": "./static/media/nodata.adc273cf.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.854e6814.js",
+    "static/js/runtime-main.bb9f15b1.js",
     "static/css/2.af3c1da9.chunk.css",
     "static/js/2.eaec6d9c.chunk.js",
-    "static/css/main.25f3e2e6.chunk.css",
-    "static/js/main.967f55c9.chunk.js"
+    "static/css/main.509c31ac.chunk.css",
+    "static/js/main.04bb5d1c.chunk.js"
   ]
 }
